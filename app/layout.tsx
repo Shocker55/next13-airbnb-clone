@@ -1,3 +1,4 @@
+import { Toaster } from "react-hot-toast";
 import RegisterModal from "./_components/modals/RegisterModal";
 import Navbar from "./_components/navbar/Navbar";
 import "./globals.css";
@@ -14,6 +15,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en">
       <body className={inter.className}>
+        <Toaster />
         <RegisterModal />
         <Navbar />
         {children}
