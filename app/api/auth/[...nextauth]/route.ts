@@ -7,16 +7,16 @@ import bcrypt from "bcrypt";
 
 import prisma from "@/app/_common/libs/prismadb";
 
-const authOptions: AuthOptions = {
+export const authOptions: AuthOptions = {
   adapter: PrismaAdapter(prisma),
   providers: [
     GithubProvider({
-      clientId: process.env.GOOGLE_CLIENT_ID as string,
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
+      clientId: process.env.GOOGLE_CLIENT_ID ?? " ",
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET ?? " ",
     }),
     GoogleProvider({
-      clientId: process.env.GOOGLE_CLIENT_ID as string,
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
+      clientId: process.env.GOOGLE_CLIENT_ID ?? " ",
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET ?? " ",
     }),
     CredentialsProvider({
       name: "credentials",
