@@ -8,6 +8,7 @@ import { useState, useCallback } from "react";
 
 import useRegisterModal from "@/app/_common/hooks/useRegisterModal";
 import useLoginModal from "@/app/_common/hooks/useLoginModal";
+
 import Modal from "./Modal";
 import Heading from "../Heading";
 import Input from "../inputs/Input";
@@ -50,6 +51,11 @@ const LoginModal = () => {
     });
   };
 
+  const toggle = useCallback(() => {
+    loginModal.onClose();
+    registerModal.onOpen();
+  }, [loginModal, registerModal])
+
   const bodyContent = (
     <div className="flex flex-col gap-4">
       <Heading title="Welcome back" subtitle="Login to your account!" />
@@ -90,12 +96,12 @@ const LoginModal = () => {
       />
       <div className="mt-4 text-center font-light text-neutral-500">
         <div className="flex flex-row items-center justify-center gap-2">
-          <div>Already have an account?</div>
+          <div>First time using Airbnb?</div>
           <div
-            onClick={registerModal.onClose}
-            className="text-neutral cursor-pointer hover:underline"
+            onClick={toggle}
+            className="cursor-pointer text-neutral-800 hover:underline"
           >
-            Log in
+            Create an account
           </div>
         </div>
       </div>
