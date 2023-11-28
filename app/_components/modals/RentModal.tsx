@@ -9,6 +9,8 @@ import Modal from "./Modal";
 import Heading from "../Heading";
 import { categories } from "../navbar/Categories";
 import CategoryInput from "../inputs/CategoryInput";
+import CountrySelect from "../inputs/CountrySelect";
+import dynamic from "next/dynamic";
 
 enum STEPS {
   CATEGORY = 0,
@@ -47,8 +49,14 @@ const RentModal = () => {
   // フォームに値を入力してhandleSubmitするのであれば、値をregisterを使って格納すればいいが、
   // 今回はクリックした値を監視したいのでwatchを使う
   const category = watch("category");
+  const location = watch("location");
+
+  // leafletがreact用にメンテナンスされていないためこうしているらしい
+  const Map = useMemo(() => dynamic(() => import("../navbar/Map"), { ssr: false }), [location]);
 
   const setCustomValue = (id: string, value: any) => {
+    // https://react-hook-form.com/docs/useform/setvalue
+    // react-hook-formに任意の値(ボタンを押した際の値等)を渡すためにsetValueを使用
     setValue(id, value, {
       shouldDirty: true,
       shouldTouch: true,
@@ -98,11 +106,21 @@ const RentModal = () => {
     </div>
   );
 
+  if (step === STEPS.LOCATION) {
+    bodyContent = (
+      <div className="flex flex-col gap-8">
+        <Heading title="Where is your place located?" subtitle="Help guests find you!" />
+        <CountrySelect value={location} onChange={(value) => setCustomValue("location", value)} />
+        <Map center={location?.latlng} />
+      </div>
+    );
+  }
+
   return (
     <Modal
       isOpen={rentModal.isOpen}
       onClose={rentModal.onClose}
-      onSubmit={rentModal.onClose}
+      onSubmit={onNext}
       actionLabel={actionLabel}
       secondaryActionLabel={secondaryActionLabel}
       secondaryAction={step === STEPS.CATEGORY ? undefined : onBack}
