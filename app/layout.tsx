@@ -26,7 +26,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <LoginModal />
           <RegisterModal />
           <Navbar />
-          {children}
+          <div className="pb-20 pt-28">{children}</div>
         </NextAuthProvider>
       </body>
     </html>
