@@ -2,6 +2,7 @@
 
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 import { SafeUser } from "../_common/types";
+import useFavorite from "../_common/hooks/useFavorite";
 
 type HeartButtonProps = {
   listingId: string;
@@ -9,8 +10,7 @@ type HeartButtonProps = {
 };
 
 const HeartButton = ({ listingId, currentUser }: HeartButtonProps) => {
-  const hasFavorited = false;
-  const toggleFavorite = () => {};
+  const { hasFavorited, toggleFavorite } = useFavorite({ listingId, currentUser });
 
   return (
     <div onClick={toggleFavorite} className="relative cursor-pointer transition hover:opacity-80">
