@@ -64,7 +64,7 @@ const RentModal = () => {
   const imageSrc = watch("imageSrc");
 
   // leafletがreact用にメンテナンスされていないためこうしているらしい
-  const Map = useMemo(() => dynamic(() => import("../navbar/Map"), { ssr: false }), [location]);
+  const Map = useMemo(() => dynamic(() => import("../Map"), { ssr: false }), [location]);
 
   const setCustomValue = (id: string, value: any) => {
     // https://react-hook-form.com/docs/useform/setvalue
