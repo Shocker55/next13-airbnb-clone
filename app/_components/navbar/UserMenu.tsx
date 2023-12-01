@@ -1,5 +1,6 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import { useCallback, useState } from "react";
 import { AiOutlineMenu } from "react-icons/ai";
 import { signOut, useSession } from "next-auth/react";
@@ -12,6 +13,7 @@ import MenuItem from "./MenuItem";
 import Avatar from "../Avatar";
 
 const UserMenu = () => {
+  const router = useRouter();
   const { data: session } = useSession();
 
   const registerModal = useRegisterModal();
@@ -57,7 +59,7 @@ const UserMenu = () => {
           <div className="flex cursor-pointer flex-col">
             {session ? (
               <>
-                <MenuItem onClick={() => {}} label="My trips" />
+                <MenuItem onClick={() => router.push("/trips")} label="My trips" />
                 <MenuItem onClick={() => {}} label="My favorites" />
                 <MenuItem onClick={() => {}} label="My reservations" />
                 <MenuItem onClick={() => {}} label="My properties" />
