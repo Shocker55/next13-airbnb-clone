@@ -6,9 +6,8 @@ import axios from "axios";
 import { differenceInCalendarDays, eachDayOfInterval } from "date-fns";
 import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useMemo, useState } from "react";
-import { Reservation } from "@prisma/client";
 
-import { SafeListing, SafeUser } from "@/app/_common/types";
+import { SafeListing, SafeUser, safeReservation } from "@/app/_common/types";
 import { categories } from "@/app/_components/navbar/Categories";
 import Container from "@/app/_components/Container";
 import ListingHead from "@/app/_components/listings/ListingHead";
@@ -24,7 +23,7 @@ const initialDateRange = {
 };
 
 type ListingClientProps = {
-  reservations?: Reservation[];
+  reservations?: safeReservation[];
   // actionsでlist取得時にuserをincludeしているため下記のように書く(userをマージ)
   listing: SafeListing & {
     user: SafeUser;
