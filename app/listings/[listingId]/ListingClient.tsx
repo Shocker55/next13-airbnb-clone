@@ -7,7 +7,7 @@ import { differenceInCalendarDays, eachDayOfInterval } from "date-fns";
 import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useMemo, useState } from "react";
 
-import { SafeListing, SafeUser, safeReservation } from "@/app/_common/types";
+import { SafeListing, SafeUser, SafeReservation } from "@/app/_common/types";
 import { categories } from "@/app/_components/navbar/Categories";
 import Container from "@/app/_components/Container";
 import ListingHead from "@/app/_components/listings/ListingHead";
@@ -23,7 +23,7 @@ const initialDateRange = {
 };
 
 type ListingClientProps = {
-  reservations?: safeReservation[];
+  reservations?: SafeReservation[];
   // actionsでlist取得時にuserをincludeしているため下記のように書く(userをマージ)
   listing: SafeListing & {
     user: SafeUser;

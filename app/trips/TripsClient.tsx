@@ -9,10 +9,10 @@ import Container from "../_components/Container";
 import Heading from "../_components/Heading";
 import ListingCard from "../_components/listings/ListingCard";
 
-import { SafeUser, safeReservation } from "../_common/types";
+import { SafeUser, SafeReservation } from "../_common/types";
 
 type TripsClientProps = {
-  reservations: safeReservation[];
+  reservations: SafeReservation[];
   currentUser?: SafeUser | null;
 };
 
