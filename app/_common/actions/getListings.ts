@@ -1,8 +1,22 @@
 import prisma from "@/app/_common/libs/prismadb";
 
-export default async function getListings() {
+export type IListingsParams = {
+  userId?: string;
+};
+
+// userIdが空のオブジェクトでも問題なく実行される
+export default async function getListings(params: IListingsParams) {
   try {
+    const { userId } = params;
+
+    let query: any = {};
+
+    if (userId) {
+      query.userId = userId;
+    }
+
     const listings = await prisma.listing.findMany({
+      where: query,
       orderBy: {
         createdAt: "desc",
       },

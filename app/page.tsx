@@ -1,12 +1,16 @@
 import getCurrentUser from "./_common/actions/getCurrentUser";
-import getListings from "./_common/actions/getListings";
+import getListings, { IListingsParams } from "./_common/actions/getListings";
 
 import Container from "./_components/Container";
 import EmptyState from "./_components/EmptyState";
 import ListingCard from "./_components/listings/ListingCard";
 
-export default async function Home() {
-  const listings = await getListings();
+type HomeProps = {
+  searchParams: IListingsParams;
+};
+
+const Home = async ({ searchParams }: HomeProps) => {
+  const listings = await getListings(searchParams);
   // currentUserがいなかったとしてもnullを返すようにしているためエラーにはならない
   const currentUser = await getCurrentUser();
 
@@ -23,4 +27,6 @@ export default async function Home() {
       </div>
     </Container>
   );
-}
+};
+
+export default Home;
