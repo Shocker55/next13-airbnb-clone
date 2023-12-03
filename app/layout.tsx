@@ -8,6 +8,7 @@ import { Toaster } from "react-hot-toast";
 import RegisterModal from "./_components/modals/RegisterModal";
 import LoginModal from "./_components/modals/LoginModal";
 import RentModal from "./_components/modals/RentModal";
+import SearchModal from "./_components/modals/SearchModal";
 
 const inter = Nunito({ subsets: ["latin"] });
 
@@ -22,6 +23,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className={inter.className}>
         <NextAuthProvider>
           <Toaster />
+          <SearchModal />
           <RentModal />
           <LoginModal />
           <RegisterModal />
